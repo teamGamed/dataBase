@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace dataBase
+namespace hospitalSystem
 {
     public partial class Form1 : Form
     {
@@ -16,6 +16,5 @@ namespace dataBase
         {
             InitializeComponent();
         }
-
     }
 }
