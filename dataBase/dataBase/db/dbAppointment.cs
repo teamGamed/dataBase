@@ -22,7 +22,7 @@ namespace dataBase
                            $"VALUES ( {id}, '{appointment.DoctorUsername}'," +
                            $" '{appointment.PatientUsername}', '{appointment.Date}'," +
                            $" '{appointment.Room}' )";
-            int r = db.executeNonQuery(query);
+            int r = dbHelper.executeNonQuery(query);
             return r;
         }
     }

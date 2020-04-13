@@ -19,7 +19,7 @@ namespace dataBase
             var query = $"INSERT INTO {TABLE} " +
                         $"VALUES ('{doctor.Username}', '{doctor.Department}'," +
                         $"'{doctor.Shift}', '{doctor.Degree}')";
-            var r = db.executeNonQuery(query);
+            var r = dbHelper.executeNonQuery(query);
             return r;
         }
 
@@ -27,7 +27,7 @@ namespace dataBase
         {
             var query = $"SELECT * FROM {TABLE} " +
                         $"WHERE {USERNAME} = '{username}' ";
-            var dbr = db.executeReader(query);
+            var dbr = dbHelper.executeReader(query);
 
             User user = dbUser.get(username);
             Doctor doctor = new Doctor(user);
@@ -44,7 +44,7 @@ namespace dataBase
         {
             var query = $" SELECT * FROM {dbAppointment.TABLE} " +
                         $" WHERE {dbAppointment.DOCTOR_USERNAME} = '{username}' ";
-            var dbr = db.executeReader(query);
+            var dbr = dbHelper.executeReader(query);
            
             List<Appointment> appointments = new List<Appointment>();
             while (dbr.Read())

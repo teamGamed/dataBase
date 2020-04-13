@@ -28,7 +28,7 @@ namespace dataBase
         {
             var query = $"select * from {TABLE} where {USERNAME} = '{username}' ";
 
-            var dbr = db.executeReader(query);
+            var dbr = dbHelper.executeReader(query);
             while (dbr.Read())
             {
                 return false;
@@ -49,7 +49,7 @@ namespace dataBase
                             $" '{user.Name}', '{user.Email}', '{user.Phone}', " +
                             $" '{user.Address}', '{user.PhotoUrl}', '{user.Type}', '{user.Sex}' ) ";
 
-            int r = db.executeNonQuery(insertQuery);
+            int r = dbHelper.executeNonQuery(insertQuery);
             return r;
         }
 
@@ -57,7 +57,7 @@ namespace dataBase
         {
             string query = $"select * from {TABLE} where {USERNAME} = '{username}' ";
 
-            var dbr = db.executeReader(query);
+            var dbr = dbHelper.executeReader(query);
             var user = new User();
 
             while (dbr.Read())
@@ -86,7 +86,7 @@ namespace dataBase
                         $" {TYPE} = '{user.Type}' , {SEX} = '{user.Sex}' WHERE {USERNAME} = '{user.Username}' ";
 
 
-            int r = db.executeNonQuery(updateQuery);
+            int r = dbHelper.executeNonQuery(updateQuery);
             return r;
         }
         public static int delete(User user)
@@ -103,7 +103,7 @@ namespace dataBase
                 // TODO delete patient row
             }
 
-            int r = db.executeNonQuery(query);
+            int r = dbHelper.executeNonQuery(query);
             return r;
         }
     }

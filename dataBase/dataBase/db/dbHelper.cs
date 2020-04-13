@@ -9,7 +9,7 @@ using Oracle.DataAccess.Client;
 
 namespace dataBase
 {
-    public static class db
+    public static class dbHelper
     {
         private static OracleConnection conn;
         private const string DB_USERNAME = "hr";
