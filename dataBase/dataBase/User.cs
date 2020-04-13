@@ -8,75 +8,91 @@ namespace dataBase
 {
     public class User
     {
-        private int id;
-        private string username;
-        private string password;
-        private string name;
-        private string email;
-        private string phone;
-        private string address;
-        private string photo_url;
-        private string type;
-        private string sex;
+        public string Username { get; set; }
 
-        public int Id
+        public string Password { get; set; }
+
+        public string Name { get; set; }
+
+        public string Email { get; set; }
+
+        public string Phone { get; set; }
+
+        public string Address { get; set; }
+
+        public string PhotoUrl { get; set; }
+
+        public string Type { get; set; }
+
+        public string Sex { get; set; }
+
+        public User(string username)
         {
-            get => id;
-            set => id = value;
+            var user = dbUser.get(username);
+            Copy(user);
         }
 
-        public string Username
+        public User()
         {
-            get => username;
-            set => username = value;
+
         }
 
-        public string Password
+        public bool CheckLogIn(string username, string password)
         {
-            get => password;
-            set => password = value;
+            return username == Username &&
+                   Password == password;
         }
 
-        public string Name
+        public override bool Equals(object obj)
         {
-            get => name;
-            set => name = value;
+            return obj is User user &&
+                   Username == user.Username &&
+                   Password == user.Password &&
+                   Name == user.Name &&
+                   Email == user.Email &&
+                   Phone == user.Phone &&
+                   Address == user.Address &&
+                   PhotoUrl == user.PhotoUrl &&
+                   Type == user.Type &&
+                   Sex == user.Sex;
         }
 
-        public string Email
+        public string GenString()
         {
-            get => email;
-            set => email = value;
+            return  $"{nameof(Username)} = {Username};\n" +
+                    $"{nameof(Password)} = {Password};\n" +
+                    $"{nameof(Name)} = {Name};\n" +
+                    $"{nameof(Email)} = {Email};\n" +
+                    $"{nameof(Phone)} = {Phone};\n" +
+                    $"{nameof(Address)} = {Address};\n" +
+                    $"{nameof(PhotoUrl)} = {PhotoUrl};\n" +
+                    $"{nameof(Type)} = {Type};\n" +
+                    $"{nameof(Sex)} = {Sex};\n";
         }
 
-        public string Phone
+        // DB Functions
+        public void UpdateDb()
         {
-            get => phone;
-            set => phone = value;
+            dbUser.update(this);
         }
 
-        public string Address
+        public void SaveDb()
         {
-            get => address;
-            set => address = value;
+            dbUser.create(this);
         }
 
-        public string PhotoUrl
+        public void Copy(User user)
         {
-            get => photo_url;
-            set => photo_url = value;
+            Username = user.Username;
+            Password = user.Password;
+            Name = user.Name;
+            Email = user.Email;
+            Phone = user.Phone;
+            Address = user.Address;
+            PhotoUrl = user.PhotoUrl;
+            Type = user.Type;
+            Sex = user.Sex;
         }
 
-        public string Type
-        {
-            get => type;
-            set => type = value;
-        }
-
-        public string Sex
-        {
-            get => sex;
-            set => sex = value;
-        }
     }
 }
