@@ -21,8 +21,8 @@ namespace dataBase.db
         public int create(Patient patient)
         {
             var query = $"INSERT INTO {TABLE} " +
-                        $"VALUES ( '{patient.Username}', '{patient.Weight}'," +
-                        $" '{patient.Height}', '{patient.Birthday}', " +
+                        $"VALUES ( '{patient.Username}', {patient.Weight}," +
+                        $" {patient.Height}, '{patient.Birthday}', " +
                         $" '{patient.BloodType}', '{patient.University}' )";
 
             int r = dbHelper.executeNonQuery(query);
@@ -38,8 +38,8 @@ namespace dataBase.db
             Patient patient = new Patient(user);
             while (dbr.Read())
             {
-                patient.Height = dbr[HEIGHT].ToString();
-                patient.Weight = dbr[WEIGHT].ToString();
+                patient.Height = int.Parse(dbr[HEIGHT].ToString());
+                patient.Weight = int.Parse(dbr[WEIGHT].ToString());
                 patient.Birthday = dbr[BIRTHDAY].ToString();
                 patient.BloodType = dbr[BLOOD_TYPE].ToString();
                 patient.University = dbr[UNIVERSITY].ToString();
