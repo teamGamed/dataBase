@@ -9,9 +9,9 @@ namespace dataBase
 {
     class Patient:User
     {
-        public string Weight { get; set; }
+        public int Weight { get; set; }
 
-        public string Height { get; set; }
+        public int Height { get; set; }
 
         public string Birthday { get; set; }
 
