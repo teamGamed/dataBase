@@ -120,16 +120,19 @@ namespace dataBase
             int r = dbHelper.executeNonQuery(query);
             return r;
         }
-        public static void updateName (string username)
+        public static void updateName (string username, string name)
         {
-            dbHelper.conn = new OracleConnection(dbHelper.dbStr);
-            dbHelper.conn.Open();
+            var conn = new OracleConnection(dbHelper.dbStr);
+            conn.Open();
             OracleCommand cmd = new OracleCommand();
-            cmd.Connection = dbHelper.conn;
+            cmd.Connection = conn;
             cmd.CommandText = "update_name";
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("uName", username);
+            cmd.Parameters.Add("usernameP", username);
+            cmd.Parameters.Add("nameP", name);
+
             cmd.ExecuteNonQuery();
+            conn.Close();
         }
     }
 }
