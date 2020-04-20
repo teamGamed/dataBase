@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Oracle.DataAccess.Client;
 
 
@@ -16,7 +17,7 @@ namespace dataBase
         public const string DB_PASSWORD = "hr";
         public static string dbStr = $"Data source=orcl;User Id={DB_USERNAME}; Password={DB_PASSWORD};";
 
-        public static int executeNonQuery(string queryText)
+        public static int executeNonQuery(string queryText, List<KeyValuePair<string, string>> parameters = null)
         {
             conn = new OracleConnection(dbStr);
             conn.Open();
@@ -25,12 +26,20 @@ namespace dataBase
             cmd.Connection = conn;
             cmd.CommandText = queryText;
             cmd.CommandType = CommandType.Text;
+            if (parameters != null)
+            {
+                foreach (var p in parameters)
+                {
+                    cmd.Parameters.Add(p.Key, p.Value);
+                }
+            }
+
             int r = cmd.ExecuteNonQuery();
             conn.Close();
             return r;
         }
 
-        public static OracleDataReader executeReader(string queryText)
+        public static OracleDataReader executeReader(string queryText, List<KeyValuePair<string,string>> parameters = null)
         {
             OracleConnection conn = new OracleConnection(dbStr);
             conn.Open();
@@ -38,6 +47,14 @@ namespace dataBase
             cmd.Connection = conn;  
             cmd.CommandText = queryText;
             cmd.CommandType = CommandType.Text;
+            if (parameters != null)
+            {
+                foreach (var p in parameters)
+                {
+                    cmd.Parameters.Add(p.Key, p.Value);
+                }
+            }
+
             return cmd.ExecuteReader();
         }
     }

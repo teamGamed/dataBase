@@ -61,5 +61,22 @@ namespace dataBase
             }
             return appointments;
         }
+
+        public static List<Doctor> getAllDoctors()
+        {
+            string query = $"SELECT * FROM {TABLE}";
+            List<Doctor> doctors = new List<Doctor>();
+            var dbr = dbHelper.executeReader(query);
+            while (dbr.Read())
+            {
+                string username = dbr[USERNAME].ToString();
+                Doctor doctor = new Doctor(dbUser.get(username));
+                doctor.Shift = dbr[SHIFT].ToString();
+                doctor.Degree = dbr[DEGREE].ToString();
+                doctor.Department = dbr[DEPARTMENT].ToString();
+                doctors.Add(doctor);
+            }
+            return doctors;
+        }
     }
 }
