@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Oracle.DataAccess.Client;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,6 +67,31 @@ namespace dataBase.db
                 appointments.Add(appointment);
             }
             return appointments;
+        }
+        public static int patientW(string patientName)
+        {
+            int height; 
+            dbHelper.conn = new OracleConnection(dbHelper.dbStr);
+            dbHelper.conn.Open();
+
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = dbHelper.conn;
+            cmd.CommandText = "get_user_wh";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add("paName", patientName);
+            cmd.Parameters.Add("hight", OracleDbType.Int32, ParameterDirection.Output);
+
+             cmd.ExecuteNonQuery();
+            try
+            {
+                height = Convert.ToInt32(cmd.Parameters["hight"].Value.ToString());
+            }
+            catch
+            {
+                height = 0;
+            }
+            return height;
         }
 
 

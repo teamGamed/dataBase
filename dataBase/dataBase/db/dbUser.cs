@@ -106,5 +106,16 @@ namespace dataBase
             int r = dbHelper.executeNonQuery(query);
             return r;
         }
+        public static void updateName (string username)
+        {
+            dbHelper.conn = new OracleConnection(dbHelper.dbStr);
+            dbHelper.conn.Open();
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = dbHelper.conn;
+            cmd.CommandText = "update_name";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("uName", username);
+            cmd.ExecuteNonQuery();
+        }
     }
 }

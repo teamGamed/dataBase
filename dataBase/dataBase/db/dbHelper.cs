@@ -11,10 +11,10 @@ namespace dataBase
 {
     public static class dbHelper
     {
-        private static OracleConnection conn;
-        private const string DB_USERNAME = "hr";
-        private const string DB_PASSWORD = "hr";
-        private static string dbStr = $"Data source=orcl;User Id={DB_USERNAME}; Password={DB_PASSWORD};";
+        public static OracleConnection conn;
+        public const string DB_USERNAME = "hr";
+        public const string DB_PASSWORD = "hr";
+        public static string dbStr = $"Data source=orcl;User Id={DB_USERNAME}; Password={DB_PASSWORD};";
 
         public static int executeNonQuery(string queryText)
         {
@@ -35,7 +35,7 @@ namespace dataBase
             OracleConnection conn = new OracleConnection(dbStr);
             conn.Open();
             OracleCommand cmd = new OracleCommand();
-            cmd.Connection = conn;
+            cmd.Connection = conn;  
             cmd.CommandText = queryText;
             cmd.CommandType = CommandType.Text;
             return cmd.ExecuteReader();

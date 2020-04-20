@@ -21,8 +21,8 @@ namespace dataBase
 
             // tests
             dbUserTesting.run();
-            UserTesting.Run();
-            dbDoctorTesting.Run();
+           // UserTesting.Run();
+            //dbDoctorTesting.Run();
 
             Application.Run(new Form1());
         }
