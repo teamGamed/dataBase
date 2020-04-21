@@ -23,11 +23,13 @@ namespace dataBase
             Appointments = dbDoctor.GetAllAppointments(this.Username);
         }
 
+        public Doctor() { }
 
-        protected bool Equals(Doctor other)
+
+        /*protected bool Equals(Doctor other)
         {
             return base.Equals(other) && Department == other.Department && Shift == other.Shift && Degree == other.Degree;
-        }
+        }*/
 
 
     }

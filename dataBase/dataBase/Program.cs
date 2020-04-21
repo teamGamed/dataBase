@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using dataBase.testing;
+//using dataBase.testing;
 
 namespace dataBase
 {
@@ -20,7 +20,7 @@ namespace dataBase
             Application.SetCompatibleTextRenderingDefault(false);
 
             // tests
-            dbUserTesting.run();
+            //dbUserTesting.run();
            // UserTesting.Run();
             //dbDoctorTesting.Run();
 
@@ -30,7 +30,7 @@ namespace dataBase
             //List<KeyValuePair<string,string>> list = new List<KeyValuePair<string, string>>();
             //list.Add(new KeyValuePair<string, string>("xx","mahmood"));
             //dbHelper.executeNonQuery(q, list);
-            Application.Run(new Form1());
+            Application.Run(new registration());
         }
     }
 }

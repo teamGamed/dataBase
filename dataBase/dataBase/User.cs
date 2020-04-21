@@ -43,7 +43,7 @@ namespace dataBase
                    Password == password;
         }
 
-        public override bool Equals(object obj)
+     /*   public override bool Equals(object obj)
         {
             return obj is User user &&
                    Username == user.Username &&
@@ -55,7 +55,7 @@ namespace dataBase
                    PhotoUrl == user.PhotoUrl &&
                    Type == user.Type &&
                    Sex == user.Sex;
-        }
+        }*/
 
         public string GenString()
         {

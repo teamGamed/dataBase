@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace dataBase.db
 {
-    class dbPatient
+    public class dbPatient
     {
         const string TABLE = "Patient";
         const string USERNAME = "username";
@@ -18,7 +18,7 @@ namespace dataBase.db
         const string BLOOD_TYPE = "blood_type";
         const string UNIVERSITY = "university";
 
-        public int create(Patient patient)
+        public static int create(Patient patient)
         {
             var query = $"INSERT INTO {TABLE} " +
                         $"VALUES ( '{patient.Username}', {patient.Weight}," +
@@ -38,10 +38,19 @@ namespace dataBase.db
             Patient patient = new Patient(user);
             while (dbr.Read())
             {
-                patient.Height = int.Parse(dbr[HEIGHT].ToString());
-                patient.Weight = int.Parse(dbr[WEIGHT].ToString());
+                if(dbr[HEIGHT].ToString()=="")
+                   patient.Height = 0;
+                else
+                    patient.Height = int.Parse(dbr[HEIGHT].ToString());
+                if (dbr[WEIGHT].ToString() == "")
+                    patient.Weight = 0;
+                else
+                    patient.Weight = int.Parse(dbr[WEIGHT].ToString());
                 patient.Birthday = dbr[BIRTHDAY].ToString();
                 patient.BloodType = dbr[BLOOD_TYPE].ToString();
+                if (dbr[UNIVERSITY].ToString() == "")
+                    patient.University = "Data not found";
+                else
                 patient.University = dbr[UNIVERSITY].ToString();
             }
             return patient;
