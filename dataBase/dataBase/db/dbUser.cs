@@ -78,12 +78,22 @@ namespace dataBase
             {
                 user.Username = dbr[USERNAME].ToString();
                 user.Password = dbr[PASSWORD].ToString();
+                if(dbr[ADDRESS].ToString()=="")
+                    user.Address= "Data not found";
+                else
                 user.Address = dbr[ADDRESS].ToString();
                 user.Email = dbr[EMAIL].ToString();
                 user.Name = dbr[NAME].ToString();
+                if (dbr[PHONE].ToString() == "")
+                    user.Phone = "Data not found";
+                else
                 user.Phone = dbr[PHONE].ToString();
+
                 user.PhotoUrl = dbr[PHOTO_URL].ToString();
                 user.Sex = dbr[SEX].ToString();
+                if (dbr[TYPE].ToString()=="")
+                    user.Type= "Data not found";
+                else
                 user.Type = dbr[TYPE].ToString();
             }
             dbr.Close();

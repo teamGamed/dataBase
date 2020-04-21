@@ -7,7 +7,7 @@ using dataBase.db;
 
 namespace dataBase
 {
-    class Patient:User
+   public class Patient:User
     {
         public int Weight { get; set; }
 
@@ -32,10 +32,10 @@ namespace dataBase
             Appointments = dbPatient.GetAllAppointments(this.Username);
         }
 
-        protected bool Equals(Patient other)
+      /*  protected bool Equals(Patient other)
         {
             return base.Equals(other) && Weight == other.Weight && Height == other.Height && Birthday == other.Birthday && BloodType == other.BloodType && University == other.University && Equals(Appointments, other.Appointments);
-        }
+        }*/
 
         
     }
