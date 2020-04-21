@@ -19,7 +19,7 @@ namespace dataBase
             var query = $"INSERT INTO {TABLE} " +
                         $"VALUES ('{doctor.Username}', '{doctor.Department}'," +
                         $"'{doctor.Shift}', '{doctor.Degree}')";
-            var r = db.executeNonQuery(query);
+            var r = dbHelper.executeNonQuery(query);
             return r;
         }
 
@@ -27,7 +27,7 @@ namespace dataBase
         {
             var query = $"SELECT * FROM {TABLE} " +
                         $"WHERE {USERNAME} = '{username}' ";
-            var dbr = db.executeReader(query);
+            var dbr = dbHelper.executeReader(query);
 
             User user = dbUser.get(username);
             Doctor doctor = new Doctor(user);
@@ -44,7 +44,7 @@ namespace dataBase
         {
             var query = $" SELECT * FROM {dbAppointment.TABLE} " +
                         $" WHERE {dbAppointment.DOCTOR_USERNAME} = '{username}' ";
-            var dbr = db.executeReader(query);
+            var dbr = dbHelper.executeReader(query);
            
             List<Appointment> appointments = new List<Appointment>();
             while (dbr.Read())
@@ -60,6 +60,23 @@ namespace dataBase
                 appointments.Add(appointment);
             }
             return appointments;
+        }
+
+        public static List<Doctor> getAllDoctors()
+        {
+            string query = $"SELECT * FROM {TABLE}";
+            List<Doctor> doctors = new List<Doctor>();
+            var dbr = dbHelper.executeReader(query);
+            while (dbr.Read())
+            {
+                string username = dbr[USERNAME].ToString();
+                Doctor doctor = new Doctor(dbUser.get(username));
+                doctor.Shift = dbr[SHIFT].ToString();
+                doctor.Degree = dbr[DEGREE].ToString();
+                doctor.Department = dbr[DEPARTMENT].ToString();
+                doctors.Add(doctor);
+            }
+            return doctors;
         }
     }
 }

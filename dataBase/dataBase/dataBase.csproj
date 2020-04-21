@@ -51,10 +51,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Appointment.cs" />
-    <Compile Include="db\db.cs" />
+    <Compile Include="db\dbDisease.cs" />
+    <Compile Include="db\dbHelper.cs" />
     <Compile Include="db\dbAppointment.cs" />
     <Compile Include="db\dbDoctor.cs" />
+    <Compile Include="db\dbPatient.cs" />
     <Compile Include="db\dbUser.cs" />
+    <Compile Include="Disease.cs" />
+    <Compile Include="Patient.cs" />
     <Compile Include="testing\dbDoctorTesting.cs" />
     <Compile Include="testing\dbUserTesting.cs" />
     <Compile Include="Doctor.cs" />

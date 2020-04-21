@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Oracle.DataAccess.Client;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,8 +24,34 @@ namespace dataBase
                            $"VALUES ( {id}, '{appointment.DoctorUsername}'," +
                            $" '{appointment.PatientUsername}', '{appointment.Date}'," +
                            $" '{appointment.Room}' )";
-            int r = db.executeNonQuery(query);
+            int r = dbHelper.executeNonQuery(query);
             return r;
+        }
+        public static void DeleteAppointment(int id)
+        {
+            dbHelper.conn = new OracleConnection(dbHelper.dbStr);
+            dbHelper.conn.Open();
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = dbHelper.conn;
+            cmd.CommandText = "delete_appointment";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("Aid", id);
+             cmd.ExecuteNonQuery();
+        }
+        public static void bookAppointment(Appointment appointment)
+        {
+            dbHelper.conn = new OracleConnection(dbHelper.dbStr);
+            dbHelper.conn.Open();
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = dbHelper.conn;
+            cmd.CommandText = "book_appointment";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("Aid", appointment.Id);
+            cmd.Parameters.Add("doctorName", appointment.DoctorUsername);
+            cmd.Parameters.Add("patientName", appointment.PatientUsername);
+            cmd.Parameters.Add("appDate", appointment.Date);
+            cmd.Parameters.Add("room", appointment.Room);
+            cmd.ExecuteNonQuery();
         }
     }
 }

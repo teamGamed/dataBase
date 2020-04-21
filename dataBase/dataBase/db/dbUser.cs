@@ -12,7 +12,7 @@ namespace dataBase
     {
         public const string TABLE = "user_tb";
         public const string USERNAME = "username";
-        public const string PASSWORD = "Password";
+        public const string PASSWORD = "password";
         public const string NAME = "Name";
         public const string EMAIL = "Email";
         public const string PHONE = "Phone";
@@ -26,9 +26,12 @@ namespace dataBase
 
         public static bool checkForUsername(string username)
         {
-            var query = $"select * from {TABLE} where {USERNAME} = '{username}' ";
-
-            var dbr = db.executeReader(query);
+            var query = $"select * from {TABLE} where {USERNAME} = :username ";
+            var parametersList = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("username", username)
+            };
+            var dbr = dbHelper.executeReader(query, parametersList);
             while (dbr.Read())
             {
                 return false;
@@ -45,11 +48,22 @@ namespace dataBase
             }
             string insertQuery = 
                             $"INSERT INTO {TABLE}"+ 
-                            $" VALUES ('{user.Username}', '{user.Password}', " +
-                            $" '{user.Name}', '{user.Email}', '{user.Phone}', " +
-                            $" '{user.Address}', '{user.PhotoUrl}', '{user.Type}', '{user.Sex}' ) ";
-
-            int r = db.executeNonQuery(insertQuery);
+                            $" VALUES ( :{USERNAME} , :{PASSWORD} , " +
+                            $" :{NAME} , :{EMAIL} , :{PHONE} , " +
+                            $" :{ADDRESS} , :{PHOTO_URL} , :{TYPE} , :{SEX} ) ";
+            var parametersList = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>(USERNAME, user.Username),
+                new KeyValuePair<string, string>(PASSWORD,user.Password),
+                new KeyValuePair<string, string>(NAME,user.Name),
+                new KeyValuePair<string, string>(EMAIL,user.Email),
+                new KeyValuePair<string, string>(PHONE,user.Phone),
+                new KeyValuePair<string, string>(ADDRESS,user.Address),
+                new KeyValuePair<string, string>(PHOTO_URL,user.PhotoUrl),
+                new KeyValuePair<string, string>(TYPE,user.Type),
+                new KeyValuePair<string, string>(SEX,user.Sex)
+            };
+            int r = dbHelper.executeNonQuery(insertQuery, parametersList);
             return r;
         }
 
@@ -57,7 +71,7 @@ namespace dataBase
         {
             string query = $"select * from {TABLE} where {USERNAME} = '{username}' ";
 
-            var dbr = db.executeReader(query);
+            var dbr = dbHelper.executeReader(query);
             var user = new User();
 
             while (dbr.Read())
@@ -86,7 +100,7 @@ namespace dataBase
                         $" {TYPE} = '{user.Type}' , {SEX} = '{user.Sex}' WHERE {USERNAME} = '{user.Username}' ";
 
 
-            int r = db.executeNonQuery(updateQuery);
+            int r = dbHelper.executeNonQuery(updateQuery);
             return r;
         }
         public static int delete(User user)
@@ -103,8 +117,22 @@ namespace dataBase
                 // TODO delete patient row
             }
 
-            int r = db.executeNonQuery(query);
+            int r = dbHelper.executeNonQuery(query);
             return r;
+        }
+        public static void updateName (string username, string name)
+        {
+            var conn = new OracleConnection(dbHelper.dbStr);
+            conn.Open();
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "update_name";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("usernameP", username);
+            cmd.Parameters.Add("nameP", name);
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
     }
 }
