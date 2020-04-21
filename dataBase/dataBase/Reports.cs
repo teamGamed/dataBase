@@ -7,31 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Oracle.DataAccess.Client;
-using Oracle.DataAccess.Types;
-
-
 
 namespace dataBase
 {
-    public partial class Form1 : Form
+    public partial class Reports : Form
     {
-        
-
-        public Form1()
+        patientExamination rep1;
+        public Reports()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            crystalReportViewer1.ReportSource = rep1;
         }
 
-
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void Reports_Load(object sender, EventArgs e)
         {
-
+            rep1 = new patientExamination();
         }
     }
 }
