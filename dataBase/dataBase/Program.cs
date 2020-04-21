@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using dataBase.testing;
+//using dataBase.testing;
 
 namespace dataBase
 {
@@ -20,7 +20,7 @@ namespace dataBase
             Application.SetCompatibleTextRenderingDefault(false);
 
             // tests
-            dbUserTesting.run();
+            //dbUserTesting.run();
            // UserTesting.Run();
             //dbDoctorTesting.Run();
 

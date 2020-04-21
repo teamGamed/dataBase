@@ -24,10 +24,10 @@ namespace dataBase
         }
 
 
-        protected bool Equals(Doctor other)
+        /*protected bool Equals(Doctor other)
         {
             return base.Equals(other) && Department == other.Department && Shift == other.Shift && Degree == other.Degree;
-        }
+        }*/
 
 
     }

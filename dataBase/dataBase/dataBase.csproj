@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin.Designer.cs">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Appointment.cs" />
     <Compile Include="db\dbDisease.cs" />
     <Compile Include="db\dbHelper.cs" />
@@ -58,9 +64,25 @@
     <Compile Include="db\dbPatient.cs" />
     <Compile Include="db\dbUser.cs" />
     <Compile Include="Disease.cs" />
+    <Compile Include="Doctor_Prf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Doctor_Prf.Designer.cs">
+      <DependentUpon>Doctor_Prf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="insert_appointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="insert_appointment.Designer.cs">
+      <DependentUpon>insert_appointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Patient.cs" />
-    <Compile Include="testing\dbDoctorTesting.cs" />
-    <Compile Include="testing\dbUserTesting.cs" />
     <Compile Include="Doctor.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -68,13 +90,38 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="pationt_prf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pationt_prf.Designer.cs">
+      <DependentUpon>pationt_prf.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="testing\test.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="testing\UserTesting.cs" />
+    <Compile Include="user_update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user_update.Designer.cs">
+      <DependentUpon>user_update.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Admin.resx">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Doctor_Prf.resx">
+      <DependentUpon>Doctor_Prf.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="insert_appointment.resx">
+      <DependentUpon>insert_appointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pationt_prf.resx">
+      <DependentUpon>pationt_prf.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -86,6 +133,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="user_update.resx">
+      <DependentUpon>user_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Doctor._prfcs">
+      <SubType>Form</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,7 +152,30 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hospital_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hospital_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\depositphotos_170612194-stock-illustration-medical-background-and-icons.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bakground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\istockphoto-911633218-612x612.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_male_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
