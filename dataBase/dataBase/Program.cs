@@ -18,7 +18,6 @@ namespace dataBase
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Reports());
 
             // tests
             dbUserTesting.run();
@@ -31,6 +30,7 @@ namespace dataBase
             //List<KeyValuePair<string,string>> list = new List<KeyValuePair<string, string>>();
             //list.Add(new KeyValuePair<string, string>("xx","mahmood"));
             //dbHelper.executeNonQuery(q, list);
+            Application.Run(new Form1());
         }
     }
 }
