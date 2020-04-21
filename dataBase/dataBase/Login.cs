@@ -69,6 +69,8 @@ namespace dataBase
                 {
                     //doctor form
                     MessageBox.Show("Sucseed");
+                    pationt_prf df = new pationt_prf(user);
+                    df.Visible = true;
                 }
                 else
                     MessageBox.Show("Email or password is wrong");
