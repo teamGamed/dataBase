@@ -11,7 +11,7 @@ namespace dataBase
     public class dbUser
     {
         public const string TABLE = "user_tb";
-        public const string USERNAME = "User_name";
+        public const string USERNAME = "username";
         public const string PASSWORD = "Password";
         public const string NAME = "Name";
         public const string EMAIL = "Email";
@@ -45,7 +45,7 @@ namespace dataBase
             }
             string insertQuery = 
                             $"INSERT INTO {TABLE}"+ 
-                            $" VALUES (5, '{user.Username}', '{user.Password}', " +
+                            $" VALUES ('{user.Username}', '{user.Password}', " +
                             $" '{user.Name}', '{user.Email}', '{user.Phone}', " +
                             $" '{user.Address}', '{user.PhotoUrl}', '{user.Type}', '{user.Sex}' ) ";
 

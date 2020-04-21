@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using dataBase.testing;
 
 namespace dataBase
 {
@@ -21,6 +22,7 @@ namespace dataBase
             // tests
             dbUserTesting.run();
             UserTesting.Run();
+            dbDoctorTesting.Run();
 
             Application.Run(new Form1());
         }
